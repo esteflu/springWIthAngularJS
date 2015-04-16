@@ -1,4 +1,7 @@
-angular.module("sprang.services", ["ngResource"]).
+//TODO
+
+/*
+angular.module("app.services", ["ngResource"]).
     factory('Book', function ($resource) {
         var Book = $resource('/api/books/:bookId', {bookId: '@id'},
             {update: {method: 'PUT'}});
@@ -8,7 +11,7 @@ angular.module("sprang.services", ["ngResource"]).
         return Book;
     });
 
-angular.module("sprang", ["sprang.services"]).
+angular.module("app", ["app.services"]).
     config(function ($routeProvider) {
         $routeProvider
             .when('/books', {templateUrl: '/views/books/list.html', controller: BookListController})
@@ -50,3 +53,4 @@ function BookDetailController($scope, $routeParams, $location, Book) {
         }
     };
 }
+*/

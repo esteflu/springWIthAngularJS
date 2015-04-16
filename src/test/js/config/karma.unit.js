@@ -5,7 +5,7 @@ files = [
     JASMINE_ADAPTER,
     './src/main/webapp/js/angular.js',
     './src/main/webapp/js/angular-resource.js',
-    './src/main/webapp/js/app.js',
+    './src/main/webapp/js/app_old.js',
     './src/test/js/lib/**/*.js',
     './src/test/js/unit/**/*.js'
 ];
