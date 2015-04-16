@@ -1,0 +1,8 @@
+<form name="myForm">
+        <span><i class="fa fa-phone fa-2x"></i></span>
+        <input type="text"
+               name="phoneNumber"
+               ng-model="phoneNumber"
+               ng-pattern="areaCodeRegExp">
+    <span class="text-error"  ng-show="myForm.phoneNumber.$error.pattern">Required area code prefix (i.e '+46')</span>
+</form>
