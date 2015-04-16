@@ -2,8 +2,9 @@
 <html ng-app="app">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <!-- TODO replace all frontend dependencies with webjars in pom.xml -->
+    <!-- TODO replace all frontend external dependencies with webjars in pom.xml -->
     <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/app.css"/>
     <link rel="stylesheet" href="webjars/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/toastr.css"/>
     <style>
@@ -42,7 +43,7 @@
 <div class="container" ng-view>
 
 </div>
-<!-- TODO replace all frontend dependencies with webjars in pom.xml -->
+<!-- TODO replace all frontend external dependencies with webjars in pom.xml -->
 <script src="app/js/jquery-1.9.1.js"></script>
 <script src="app/js/bootstrap.js"></script>
 <script src="app/js/angular.js"></script>
@@ -51,5 +52,7 @@
 <!--<script src="app/app_old.js"></script>-->
 <script src="app/app.js"></script>
 <script src="app/controllers/controllers.js"></script>
+<!-- TODO need to have a more flexible dependency path -->
+<script src="app/services/validation/validation.js"></script>
 </body>
 </html>

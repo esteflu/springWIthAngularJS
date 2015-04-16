@@ -4,5 +4,6 @@
                name="phoneNumber"
                ng-model="phoneNumber"
                ng-pattern="areaCodeRegExp">
-    <span class="text-error"  ng-show="myForm.phoneNumber.$error.pattern">Required area code prefix (i.e '+46')</span>
+        <span class="text-error"  ng-show="myForm.phoneNumber.$error.pattern">Required area code prefix (i.e '+46')</span>
+        <br/><button type="submit" class="btn btn-default" ng-click="validatePhoneNumber()">Validate</button>
 </form>
