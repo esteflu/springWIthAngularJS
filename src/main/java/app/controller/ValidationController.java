@@ -23,6 +23,7 @@ public class ValidationController {
             produces = MediaType.APPLICATION_JSON_VALUE )
 
     public ResponseEntity<JSONResponse> validatePhoneNumber(@PathVariable("number") String number) {
+        System.out.println("number" + number);
         return new ResponseEntity<JSONResponse>(new JSONResponse(number), HttpStatus.OK);
     }
 }
