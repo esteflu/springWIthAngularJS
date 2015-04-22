@@ -1,6 +1,8 @@
 package app.controller;
 
 import app.model.JSONResponse;
+import app.service.PhoneValidatorImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/validate")
-public class ValidationController {
+public class PhoneValidationController {
+
+    @Autowired
+    PhoneValidatorImpl phoneValidator;
 
     @RequestMapping(
             value = "/{number}",
@@ -23,7 +28,6 @@ public class ValidationController {
             produces = MediaType.APPLICATION_JSON_VALUE )
 
     public ResponseEntity<JSONResponse> validatePhoneNumber(@PathVariable("number") String number) {
-        System.out.println("number" + number);
         return new ResponseEntity<JSONResponse>(new JSONResponse(number), HttpStatus.OK);
     }
 }
