@@ -9,9 +9,11 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
             ValidationService.validateNumber({ number: $scope.phoneNumber },
                 function(success) {
                     $log.info("success! ", success);
+                    //TODO check for type: FIXED_LINE_OR_MOBILE and prompt user when checkbox checked for SMS
                 },
                 function(error) {
                     $log.info("error! ", error);
+                    //TODO check for type.UNKNOWN and display feedback
                 }
             );
         }
