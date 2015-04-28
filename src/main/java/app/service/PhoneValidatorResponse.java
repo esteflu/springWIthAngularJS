@@ -16,7 +16,7 @@ public class PhoneValidatorResponse {
         return new ResponseEntity<JSONResponse>(response, HttpStatus.OK);
     }
 
-    public ResponseEntity<JSONResponse> getBadRequest(JSONResponse response) {
+    public ResponseEntity<JSONResponse> getBadRequestResponse(JSONResponse response) {
         return new ResponseEntity<JSONResponse>(response, HttpStatus.BAD_REQUEST);
     }
 }

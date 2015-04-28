@@ -1,12 +1,9 @@
 package app.controller;
 
 import app.model.JSONResponse;
-import app.service.PhoneValidator;
 import app.service.PhoneValidatorImpl;
 import app.service.PhoneValidatorResponse;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,16 +34,30 @@ public class PhoneValidationController {
 
     public ResponseEntity<JSONResponse> validatePhoneNumber(@PathVariable("number") String number) {
 
-        if(!phoneValidator.isValidPhoneNumber(number, getCountryISO2(number))) {
-            return response.getBadRequest(new JSONResponse(number, getCountryISO2(number), null));
+        try {
+            return getResponseEntity(number);
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return response.getBadRequestResponse(new JSONResponse(number, null, PhoneNumberType.UNKNOWN));
         }
-        return response.getOKResponse(new JSONResponse(number, getCountryISO2(number), getPhoneNumberType(number)));
+    }
+
+    private ResponseEntity<JSONResponse> getResponseEntity(@PathVariable("number") String number) {
+        String countryISO2 = getCountryISO2(number);
+
+        if(!phoneValidator.isValidPhoneNumber(number, countryISO2)) {
+            return response.getBadRequestResponse(new JSONResponse(number, countryISO2, PhoneNumberType.UNKNOWN));
+        }
+        return response.getOKResponse(new JSONResponse(number, countryISO2, getPhoneNumberType(number)));
     }
 
     private PhoneNumberType getPhoneNumberType(String number) {
-        if (phoneValidator.isFixedNumber(number, getCountryISO2(number))) {
+        String countryISO2 = getCountryISO2(number);
+
+        if (phoneValidator.isFixedNumber(number, countryISO2)) {
             return PhoneNumberType.FIXED_LINE;
-        } else if (phoneValidator.isMobileNumber(number, getCountryISO2(number))) {
+        } else if (phoneValidator.isMobileNumber(number, countryISO2)) {
             return PhoneNumberType.MOBILE;
         } else {
             return PhoneNumberType.FIXED_LINE_OR_MOBILE;
@@ -54,9 +65,6 @@ public class PhoneValidationController {
     }
 
     private String getCountryISO2(String number) {
-        //TODO fix better fail management
-        if (number.length() > 4)
-            return phoneValidator.getCountryISO2FromPhoneNumber(number);
-        return "number too short";
+        return phoneValidator.getCountryISO2FromPhoneNumber(number);
     }
 }
