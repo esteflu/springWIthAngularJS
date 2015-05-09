@@ -5,11 +5,15 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
 
         $scope.areaCodeRegExp =/^\+\d{2}/;
 
+        $scope.sms = false;
+
         $scope.validatePhoneNumber = function() {
             ValidationService.validateNumber({ number: $scope.phoneNumber },
                 function(success) {
-                    $log.info("success! ", success);
-                    //TODO check for type: FIXED_LINE_OR_MOBILE and prompt user when checkbox checked for SMS
+                    //$log.info("success! ", success);
+                    if ($scope.sms && success.type === 'FIXED_LINE_OR_MOBILE') {
+                        $log.info("prompt modal dialog for number: ", success.number);
+                    }
                 },
                 function(error) {
                     $log.info("error! ", error);
