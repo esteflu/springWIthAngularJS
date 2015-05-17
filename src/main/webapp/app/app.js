@@ -7,7 +7,7 @@ app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/validation', {
-                templateUrl: 'views/validation/form.html',
+                templateUrl: 'views/validation/phoneNumber.html',
                 controller: 'ValidationController'
             });
     }]);

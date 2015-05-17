@@ -1,0 +1,25 @@
+<form name="myForm">
+    <div class="elementRow">
+        <i class="fa fa-phone fa-2x"></i>
+        <input type="text"
+               name="phoneNumber"
+               ng-model="phoneNumber"
+               ng-pattern="areaCodeRegExp"
+               required>
+        <span class="text-error" ng-show="myForm.phoneNumber.$error.pattern">Required area code prefix (i.e '+XX')</span>
+    </div>
+
+    <div class="elementRow">
+        <input class="smsCheck" type="checkbox" ng-model="sms"> SMS notification
+    </div>
+
+    <div class="elementRow">
+        <button type="submit"
+                class="btn btn-default"
+                ng-click="validatePhoneNumber()"
+                ng-disabled="myForm.$invalid">Validate</button>
+    </div>
+
+</form>
+
+<div ng-include src="'views/validation/modal.html'"></div>
