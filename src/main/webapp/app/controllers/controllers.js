@@ -6,7 +6,6 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
         $scope.areaCodeRegExp =/^\+\d{2}/;
 
         $scope.sms = false;
-        $log.info(ModalDialogService);
 
         $scope.validatePhoneNumber = function() {
             ValidationService.validateNumber({ number: $scope.phoneNumber },
