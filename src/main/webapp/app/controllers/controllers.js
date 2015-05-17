@@ -1,19 +1,18 @@
 var controllers = angular.module('controllers', []);
 
-controllers.controller('ValidationController', ['$scope', '$log', 'ValidationService',
-    function ($scope, $log, ValidationService) {
+controllers.controller('ValidationController', ['$scope', '$log', 'ValidationService', 'ModalDialogService',
+    function ($scope, $log, ValidationService, ModalDialogService) {
 
         $scope.areaCodeRegExp =/^\+\d{2}/;
 
         $scope.sms = false;
+        $log.info(ModalDialogService);
 
         $scope.validatePhoneNumber = function() {
             ValidationService.validateNumber({ number: $scope.phoneNumber },
                 function(success) {
                     if ($scope.sms && success.type === 'FIXED_LINE_OR_MOBILE') {
-                        $log.info("prompt modal dialog for number: ", success.number);
-                        //TODO make this a service?
-                        $("#myModal").modal('show');
+                        ModalDialogService.showDialog($("#myModal"));
                     }
                 },
                 function(error) {
