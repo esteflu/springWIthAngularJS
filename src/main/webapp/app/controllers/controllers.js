@@ -10,9 +10,10 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
         $scope.validatePhoneNumber = function() {
             ValidationService.validateNumber({ number: $scope.phoneNumber },
                 function(success) {
-                    //$log.info("success! ", success);
                     if ($scope.sms && success.type === 'FIXED_LINE_OR_MOBILE') {
                         $log.info("prompt modal dialog for number: ", success.number);
+                        //TODO make this a service?
+                        $("#myModal").modal('show');
                     }
                 },
                 function(error) {
