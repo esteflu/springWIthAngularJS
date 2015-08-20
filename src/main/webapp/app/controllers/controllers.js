@@ -22,8 +22,8 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
         }
     }]);
 
-controllers.controller('MapController', ['$scope', '$log',
-    function ($scope, $log) {
+controllers.controller('MapController', ['$scope', '$log', '$window',
+    function ($scope, $log, $window) {
         $log.info( 'loading MapController...' );
 
         var mapOptions = {
@@ -33,4 +33,10 @@ controllers.controller('MapController', ['$scope', '$log',
         }
 
         $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        $scope.printMap = function() {
+            $log.info( 'print map');
+            $window.print();
+
+        }
     }]);
