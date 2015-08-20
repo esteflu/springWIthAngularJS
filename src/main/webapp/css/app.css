@@ -14,7 +14,7 @@
 .mapContainer
 #map {
     height:420px;
-    width:600px;
+    width:800px;
     border: 2px solid #8AC007;
     border-radius: 3px;
 }
@@ -26,7 +26,20 @@
     margin-left: 0;
 }
 @media print {
-    .navbar-fixed-top{
+    .navbar-fixed-top,
+    .container
+    .mapContainer
+    .buttonRow
+    .btn{
         display: none;
     }
+    .container
+    .mapContainer
+    #map {
+        width: 100%;;
+    }
+    .container {
+        margin-left: 0;
+    }
+    
 }
