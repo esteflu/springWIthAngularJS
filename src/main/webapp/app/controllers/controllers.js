@@ -21,3 +21,16 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
             );
         }
     }]);
+
+controllers.controller('MapController', ['$scope', '$log',
+    function ($scope, $log) {
+        $log.info( 'loading MapController...' );
+
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(57.708870, 11.974560),
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        }
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }]);

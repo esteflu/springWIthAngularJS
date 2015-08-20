@@ -10,3 +10,11 @@
     color: red;
     margin: 0 0 0;
 }
+.container
+.mapContainer
+#map {
+    height:420px;
+    width:600px;
+    border: 2px solid #8AC007;
+    border-radius: 3px;
+}
