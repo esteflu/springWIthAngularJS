@@ -22,21 +22,28 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
         }
     }]);
 
-controllers.controller('MapController', ['$scope', '$log', '$window',
-    function ($scope, $log, $window) {
-        $log.info( 'loading MapController...' );
+controllers.controller('MapController', ['$scope', '$log', '$window', 'MapService',
+    function ($scope, $log, $window, MapService) {
 
         var mapOptions = {
             zoom: 8,
-            center: new google.maps.LatLng(57.708870, 11.974560),
+            center: new google.maps.LatLng(48.858093, 2.294694),
             mapTypeId: google.maps.MapTypeId.TERRAIN
-        }
+        };
 
-        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        var mapPrintParams = {
+            lat: mapOptions.center.G,
+            long: mapOptions.center.K,
+            zoom: mapOptions.zoom,
+            mapTypeId: mapOptions.mapTypeId
+
+        };
+
+        MapService.buildMap(document.getElementById('map'), mapOptions);
+
+        $scope.printableMapUrl = MapService.buildPrintUrl(mapPrintParams);
 
         $scope.printMap = function() {
-            $log.info( 'print map');
             $window.print();
-
-        }
+        };
     }]);

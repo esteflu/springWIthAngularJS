@@ -13,8 +13,8 @@
 .container
 .mapContainer
 #map {
-    height:420px;
-    width:800px;
+    height:400px;
+    width:100%;
     border: 2px solid #8AC007;
     border-radius: 3px;
 }
@@ -25,6 +25,14 @@
     margin-top: 2px;
     margin-left: 0;
 }
+@media screen {
+    .container
+    .mapContainer
+    .printableMap {
+        display: none;
+    }
+}
+
 @media print {
     .navbar-fixed-top,
     .container
@@ -36,10 +44,16 @@
     .container
     .mapContainer
     #map {
-        width: 100%;;
+        width: 100%;
+        display: none;
     }
     .container {
         margin-left: 0;
+    }
+    .container
+    .mapContainer
+    .printableMap {
+        text-align: center;
     }
     
 }
