@@ -5,7 +5,7 @@ services.factory('MapService', ['$log', function ($log) {
         map,
         mapPrintParams;
 
-    service.setMapOptions = function(options) {
+    service.setMapOptions = function (options) {
         mapPrintParams = {
             lat: options.center.G,
             long: options.center.K,
@@ -16,27 +16,27 @@ services.factory('MapService', ['$log', function ($log) {
 
     service.buildPrintUrl = function () {
         return "http://maps.googleapis.com/maps/api/staticmap" +
-        "?center="+mapPrintParams.lat+",+"+mapPrintParams.long+""+
-        "&zoom="+mapPrintParams.zoom+""+
-        "&scale=false" +
-        "&size=800x500" +
-        "&markers=color:redS%7C"+mapPrintParams.lat+","+mapPrintParams.long+""+
-        "&maptype="+mapPrintParams.mapTypeId+""+
-        "&format=png" +
-        "&visual_refresh=true";
+            "?center=" + mapPrintParams.lat + ",+" + mapPrintParams.long + "" +
+            "&zoom=" + mapPrintParams.zoom + "" +
+            "&scale=false" +
+            "&size=800x500" +
+            "&markers=color:redS%7C" + mapPrintParams.lat + "," + mapPrintParams.long + "" +
+            "&maptype=" + mapPrintParams.mapTypeId + "" +
+            "&format=png" +
+            "&visual_refresh=true";
     };
 
-    service.buildMap = function(elementId, options) {
+    service.buildMap = function (elementId, options) {
         map = new google.maps.Map(elementId, options);
         options.marker.setMap(map);
     };
 
-    service.getMapInstance = function() {
+    service.getMapInstance = function () {
         return map;
     };
 
-    service.setZoom = function(zoomLevel) {
-      mapPrintParams.zoom = zoomLevel;
+    service.setZoom = function (zoomLevel) {
+        mapPrintParams.zoom = zoomLevel;
     };
 
     return service;
