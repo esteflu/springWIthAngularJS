@@ -25,25 +25,31 @@ controllers.controller('ValidationController', ['$scope', '$log', 'ValidationSer
 controllers.controller('MapController', ['$scope', '$log', '$window', 'MapService',
     function ($scope, $log, $window, MapService) {
 
-        var mapOptions = {
-            zoom: 8,
-            center: new google.maps.LatLng(48.858093, 2.294694),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
-        };
+        var latLong = new google.maps.LatLng(48.858093, 2.294694),
+            mapOptions = {
+                zoom: 8,
+                center: latLong,
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                marker: new google.maps.Marker({
+                    position: latLong,
+                    animation: google.maps.Animation.DROP,
+                    title: 'a marker!'
+                })
+            };
 
-        var mapPrintParams = {
-            lat: mapOptions.center.G,
-            long: mapOptions.center.K,
-            zoom: mapOptions.zoom,
-            mapTypeId: mapOptions.mapTypeId
-
-        };
-
+        MapService.setMapOptions(mapOptions);
         MapService.buildMap(document.getElementById('map'), mapOptions);
 
-        $scope.printableMapUrl = MapService.buildPrintUrl(mapPrintParams);
-
         $scope.printMap = function() {
-            $window.print();
+
+            setTimeout(function() {
+                $window.print();
+            },500);
+
+            $scope.printableMapUrl = MapService.buildPrintUrl();
         };
+        //TODO move to listener service
+        google.maps.event.addListener(MapService.getMapInstance(),'zoom_changed',function(){
+            MapService.setZoom(MapService.getMapInstance().getZoom());
+        });
     }]);
