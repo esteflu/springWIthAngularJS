@@ -53,3 +53,10 @@ controllers.controller('MapController', ['$scope', '$log', '$window', 'MapServic
             MapService.setZoom(MapService.getMapInstance().getZoom());
         });
     }]);
+
+controllers.controller('IframeController', ['$scope', '$log', '$window', '$sce',
+    function($scope, $log, $window, $sce) {
+        $log.info("loading iframecontroller...");
+        //$scope.iframeContent = $sce.trustAsResourceUrl("views/iframe/iframeContent.html");
+        $scope.iframeContent = "views/iframe/iframeContent.html";
+    }]);

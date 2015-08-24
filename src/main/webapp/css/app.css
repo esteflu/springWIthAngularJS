@@ -57,3 +57,12 @@
     }
     
 }
+
+.container
+.iframeContainer
+.iframeClass {
+    width: 600px;
+    height: 300px;
+    border: none;
+    background: #feffdb;
+}

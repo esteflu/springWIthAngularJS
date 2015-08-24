@@ -1,4 +1,5 @@
 var app = angular.module('app', [
+    'ngRoute',
     'controllers',
     'services'
 ]);
@@ -13,5 +14,9 @@ app.config(['$routeProvider',
             when('/map', {
                 templateUrl: 'views/map/map.html',
                 controller: 'MapController'
+            }).
+            when('/iframe', {
+                templateUrl: 'views/iframe/iframe.html',
+                controller: 'IframeController'
             });
     }]);
